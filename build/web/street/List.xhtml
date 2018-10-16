@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListStreetTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListStreetEmpty}" rendered="#{streetController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{streetController.items.rowCount > 0}">
+                    <h:outputText value="#{streetController.pagination.pageFirstItem + 1}..#{streetController.pagination.pageLastItem + 1}/#{streetController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{streetController.previous}" value="#{bundle.Previous} #{streetController.pagination.pageSize}" rendered="#{streetController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{streetController.next}" value="#{bundle.Next} #{streetController.pagination.pageSize}" rendered="#{streetController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{streetController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStreetTitle_idstreet}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idstreet}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStreetTitle_streetName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.streetName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStreetTitle_idRegion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idRegion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{streetController.prepareView}" value="#{bundle.ListStreetViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{streetController.prepareEdit}" value="#{bundle.ListStreetEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{streetController.destroy}" value="#{bundle.ListStreetDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{streetController.prepareCreate}" value="#{bundle.ListStreetCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListStreetIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

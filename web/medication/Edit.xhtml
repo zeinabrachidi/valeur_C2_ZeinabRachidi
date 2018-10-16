@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMedicationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMedicationLabel_idMedication}" for="idMedication" />
+                    <h:inputText id="idMedication" value="#{medicationController.selected.idMedication}" title="#{bundle.EditMedicationTitle_idMedication}" required="true" requiredMessage="#{bundle.EditMedicationRequiredMessage_idMedication}"/>
+                    <h:outputLabel value="#{bundle.EditMedicationLabel_medicationDate}" for="medicationDate" />
+                    <h:inputText id="medicationDate" value="#{medicationController.selected.medicationDate}" title="#{bundle.EditMedicationTitle_medicationDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMedicationLabel_hospmedication}" for="hospmedication" />
+                    <h:selectOneMenu id="hospmedication" value="#{medicationController.selected.hospmedication}" title="#{bundle.EditMedicationTitle_hospmedication}" >
+                        <f:selectItems value="#{hospmedicationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMedicationLabel_consultmedication}" for="consultmedication" />
+                    <h:selectOneMenu id="consultmedication" value="#{medicationController.selected.consultmedication}" title="#{bundle.EditMedicationTitle_consultmedication}" >
+                        <f:selectItems value="#{consultmedicationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMedicationLabel_idpharmacy}" for="idpharmacy" />
+                    <h:selectOneMenu id="idpharmacy" value="#{medicationController.selected.idpharmacy}" title="#{bundle.EditMedicationTitle_idpharmacy}" >
+                        <f:selectItems value="#{pharmacyController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{medicationController.update}" value="#{bundle.EditMedicationSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMedicationViewLink}"/>
+                <br />
+                <h:commandLink action="#{medicationController.prepareList}" value="#{bundle.EditMedicationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMedicationIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

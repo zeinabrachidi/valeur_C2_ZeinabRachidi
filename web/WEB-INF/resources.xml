@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="MiriamJNDI" type="javax.sql.DataSource">#Sun Oct 14 19:54:20 EEST 2018
+jdbcDriver=com.mysql.jdbc.Driver
+password=Sara00Malek02
+userName=root
+jdbcUrl=jdbc\:mysql\://localhost\:3306/valeurc2?zeroDateTimeBehavior\=convertToNull
+</Resource>
+  <Resource id="MiriamJNDI1" type="javax.sql.DataSource">#Sun Oct 14 19:56:37 EEST 2018
+jdbcDriver=com.mysql.jdbc.Driver
+password=Sara00Malek02
+userName=root
+jdbcUrl=jdbc\:mysql\://localhost\:3306/valeurC2?zeroDateTimeBehavior\=convertToNull
+</Resource>
+</resources>

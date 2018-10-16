@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMedicalactTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMedicalactLabel_idMedicalAct}" for="idMedicalAct" />
+                    <h:inputText id="idMedicalAct" value="#{medicalactController.selected.idMedicalAct}" title="#{bundle.EditMedicalactTitle_idMedicalAct}" required="true" requiredMessage="#{bundle.EditMedicalactRequiredMessage_idMedicalAct}"/>
+                    <h:outputLabel value="#{bundle.EditMedicalactLabel_medicalActDate}" for="medicalActDate" />
+                    <h:inputText id="medicalActDate" value="#{medicalactController.selected.medicalActDate}" title="#{bundle.EditMedicalactTitle_medicalActDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMedicalactLabel_medicalactTime}" for="medicalactTime" />
+                    <h:inputText id="medicalactTime" value="#{medicalactController.selected.medicalactTime}" title="#{bundle.EditMedicalactTitle_medicalactTime}" >
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditMedicalactLabel_medicalactDesc}" for="medicalactDesc" />
+                    <h:inputText id="medicalactDesc" value="#{medicalactController.selected.medicalactDesc}" title="#{bundle.EditMedicalactTitle_medicalactDesc}" />
+                    <h:outputLabel value="#{bundle.EditMedicalactLabel_idMedicalCard}" for="idMedicalCard" />
+                    <h:selectOneMenu id="idMedicalCard" value="#{medicalactController.selected.idMedicalCard}" title="#{bundle.EditMedicalactTitle_idMedicalCard}" >
+                        <f:selectItems value="#{medicalcardController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMedicalactLabel_idmedicalacttype}" for="idmedicalacttype" />
+                    <h:selectOneMenu id="idmedicalacttype" value="#{medicalactController.selected.idmedicalacttype}" title="#{bundle.EditMedicalactTitle_idmedicalacttype}" >
+                        <f:selectItems value="#{medicalacttypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMedicalactLabel_hospitalization}" for="hospitalization" />
+                    <h:selectOneMenu id="hospitalization" value="#{medicalactController.selected.hospitalization}" title="#{bundle.EditMedicalactTitle_hospitalization}" >
+                        <f:selectItems value="#{hospitalizationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMedicalactLabel_consultation}" for="consultation" />
+                    <h:selectOneMenu id="consultation" value="#{medicalactController.selected.consultation}" title="#{bundle.EditMedicalactTitle_consultation}" >
+                        <f:selectItems value="#{consultationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{medicalactController.update}" value="#{bundle.EditMedicalactSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMedicalactViewLink}"/>
+                <br />
+                <h:commandLink action="#{medicalactController.prepareList}" value="#{bundle.EditMedicalactShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMedicalactIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

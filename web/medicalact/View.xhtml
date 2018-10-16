@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMedicalactTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMedicalactLabel_idMedicalAct}"/>
+                    <h:outputText value="#{medicalactController.selected.idMedicalAct}" title="#{bundle.ViewMedicalactTitle_idMedicalAct}"/>
+                    <h:outputText value="#{bundle.ViewMedicalactLabel_medicalActDate}"/>
+                    <h:outputText value="#{medicalactController.selected.medicalActDate}" title="#{bundle.ViewMedicalactTitle_medicalActDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMedicalactLabel_medicalactTime}"/>
+                    <h:outputText value="#{medicalactController.selected.medicalactTime}" title="#{bundle.ViewMedicalactTitle_medicalactTime}">
+                        <f:convertDateTime pattern="HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewMedicalactLabel_medicalactDesc}"/>
+                    <h:outputText value="#{medicalactController.selected.medicalactDesc}" title="#{bundle.ViewMedicalactTitle_medicalactDesc}"/>
+                    <h:outputText value="#{bundle.ViewMedicalactLabel_idMedicalCard}"/>
+                    <h:outputText value="#{medicalactController.selected.idMedicalCard}" title="#{bundle.ViewMedicalactTitle_idMedicalCard}"/>
+                    <h:outputText value="#{bundle.ViewMedicalactLabel_idmedicalacttype}"/>
+                    <h:outputText value="#{medicalactController.selected.idmedicalacttype}" title="#{bundle.ViewMedicalactTitle_idmedicalacttype}"/>
+                    <h:outputText value="#{bundle.ViewMedicalactLabel_hospitalization}"/>
+                    <h:outputText value="#{medicalactController.selected.hospitalization}" title="#{bundle.ViewMedicalactTitle_hospitalization}"/>
+                    <h:outputText value="#{bundle.ViewMedicalactLabel_consultation}"/>
+                    <h:outputText value="#{medicalactController.selected.consultation}" title="#{bundle.ViewMedicalactTitle_consultation}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{medicalactController.destroyAndView}" value="#{bundle.ViewMedicalactDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMedicalactEditLink}"/>
+                <br />
+                <h:commandLink action="#{medicalactController.prepareCreate}" value="#{bundle.ViewMedicalactCreateLink}" />
+                <br />
+                <h:commandLink action="#{medicalactController.prepareList}" value="#{bundle.ViewMedicalactShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMedicalactIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

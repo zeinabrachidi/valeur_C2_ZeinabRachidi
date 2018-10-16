@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+         <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        <h1 style="text-align: center;background-color: silver; color: red;">WELCOME TO MYRIAM CENTER FOR MEDICAL SERVICES</h1>
+        <table>
+            <tr>
+                <td>Home</td>
+                <td><h:link outcome="/subscription/List" value="Show All Subscription Items"/>Show All Subscription Items"/></td>
+                <br />
+                <td><a href="Person.xhtml">Sign Up</a></td>
+            </tr>
+        </table>
+       <br />
+        <h:link outcome="/city/List" value="Show All City Items"/>
+        <br />
+        <h:link outcome="/person/List" value="Show All Person Items"/>
+        <br />
+        <h:link outcome="/profession/List" value="Show All Profession Items"/>
+        <br />
+        <h:link outcome="/region/List" value="Show All Region Items"/>
+        <br />
+        <h:link outcome="/street/List" value="Show All Street Items"/>
+        <br />
+        <h:link outcome="/subscription/List" value="Show All Subscription Items"/>
+    </h:body>
+</html>
+

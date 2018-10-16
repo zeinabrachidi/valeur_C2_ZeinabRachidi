@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditDiseasesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditDiseasesLabel_iddisease}" for="iddisease" />
+                    <h:inputText id="iddisease" value="#{diseasesController.selected.iddisease}" title="#{bundle.EditDiseasesTitle_iddisease}" required="true" requiredMessage="#{bundle.EditDiseasesRequiredMessage_iddisease}"/>
+                    <h:outputLabel value="#{bundle.EditDiseasesLabel_diseaseName}" for="diseaseName" />
+                    <h:inputText id="diseaseName" value="#{diseasesController.selected.diseaseName}" title="#{bundle.EditDiseasesTitle_diseaseName}" />
+                </h:panelGrid>
+                <h:commandLink action="#{diseasesController.update}" value="#{bundle.EditDiseasesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditDiseasesViewLink}"/>
+                <br />
+                <h:commandLink action="#{diseasesController.prepareList}" value="#{bundle.EditDiseasesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditDiseasesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

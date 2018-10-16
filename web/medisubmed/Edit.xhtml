@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMedisubmedTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMedisubmedLabel_qty}" for="qty" />
+                    <h:inputText id="qty" value="#{medisubmedController.selected.qty}" title="#{bundle.EditMedisubmedTitle_qty}" />
+                    <h:outputLabel value="#{bundle.EditMedisubmedLabel_times}" for="times" />
+                    <h:inputText id="times" value="#{medisubmedController.selected.times}" title="#{bundle.EditMedisubmedTitle_times}" />
+                    <h:outputLabel value="#{bundle.EditMedisubmedLabel_submedicine}" for="submedicine" />
+                    <h:selectOneMenu id="submedicine" value="#{medisubmedController.selected.submedicine}" title="#{bundle.EditMedisubmedTitle_submedicine}" required="true" requiredMessage="#{bundle.EditMedisubmedRequiredMessage_submedicine}">
+                        <f:selectItems value="#{submedicineController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditMedisubmedLabel_medication}" for="medication" />
+                    <h:selectOneMenu id="medication" value="#{medisubmedController.selected.medication}" title="#{bundle.EditMedisubmedTitle_medication}" required="true" requiredMessage="#{bundle.EditMedisubmedRequiredMessage_medication}">
+                        <f:selectItems value="#{medicationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{medisubmedController.update}" value="#{bundle.EditMedisubmedSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMedisubmedViewLink}"/>
+                <br />
+                <h:commandLink action="#{medisubmedController.prepareList}" value="#{bundle.EditMedisubmedShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMedisubmedIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

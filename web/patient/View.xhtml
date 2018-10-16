@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPatientTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPatientLabel_idPerson}"/>
+                    <h:outputText value="#{patientController.selected.idPerson}" title="#{bundle.ViewPatientTitle_idPerson}"/>
+                    <h:outputText value="#{bundle.ViewPatientLabel_ssn}"/>
+                    <h:outputText value="#{patientController.selected.ssn}" title="#{bundle.ViewPatientTitle_ssn}"/>
+                    <h:outputText value="#{bundle.ViewPatientLabel_registerNo}"/>
+                    <h:outputText value="#{patientController.selected.registerNo}" title="#{bundle.ViewPatientTitle_registerNo}"/>
+                    <h:outputText value="#{bundle.ViewPatientLabel_dob}"/>
+                    <h:outputText value="#{patientController.selected.dob}" title="#{bundle.ViewPatientTitle_dob}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPatientLabel_bloodGrp}"/>
+                    <h:outputText value="#{patientController.selected.bloodGrp}" title="#{bundle.ViewPatientTitle_bloodGrp}"/>
+                    <h:outputText value="#{bundle.ViewPatientLabel_person}"/>
+                    <h:outputText value="#{patientController.selected.person}" title="#{bundle.ViewPatientTitle_person}"/>
+                    <h:outputText value="#{bundle.ViewPatientLabel_idNationality}"/>
+                    <h:outputText value="#{patientController.selected.idNationality}" title="#{bundle.ViewPatientTitle_idNationality}"/>
+                    <h:outputText value="#{bundle.ViewPatientLabel_idRegion}"/>
+                    <h:outputText value="#{patientController.selected.idRegion}" title="#{bundle.ViewPatientTitle_idRegion}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{patientController.destroyAndView}" value="#{bundle.ViewPatientDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPatientEditLink}"/>
+                <br />
+                <h:commandLink action="#{patientController.prepareCreate}" value="#{bundle.ViewPatientCreateLink}" />
+                <br />
+                <h:commandLink action="#{patientController.prepareList}" value="#{bundle.ViewPatientShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPatientIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSubscriptionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSubscriptionLabel_idsubscription}"/>
+                    <h:outputText value="#{subscriptionController.selected.idsubscription}" title="#{bundle.ViewSubscriptionTitle_idsubscription}"/>
+                    <h:outputText value="#{bundle.ViewSubscriptionLabel_subscriptionDate}"/>
+                    <h:outputText value="#{subscriptionController.selected.subscriptionDate}" title="#{bundle.ViewSubscriptionTitle_subscriptionDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewSubscriptionLabel_idPerson}"/>
+                    <h:outputText value="#{subscriptionController.selected.idPerson}" title="#{bundle.ViewSubscriptionTitle_idPerson}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{subscriptionController.destroyAndView}" value="#{bundle.ViewSubscriptionDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSubscriptionEditLink}"/>
+                <br />
+                <h:commandLink action="#{subscriptionController.prepareCreate}" value="#{bundle.ViewSubscriptionCreateLink}" />
+                <br />
+                <h:commandLink action="#{subscriptionController.prepareList}" value="#{bundle.ViewSubscriptionShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSubscriptionIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

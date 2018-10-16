@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditHospsubmedTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditHospsubmedLabel_qty}" for="qty" />
+                    <h:inputText id="qty" value="#{hospsubmedController.selected.qty}" title="#{bundle.EditHospsubmedTitle_qty}" />
+                    <h:outputLabel value="#{bundle.EditHospsubmedLabel_times}" for="times" />
+                    <h:inputText id="times" value="#{hospsubmedController.selected.times}" title="#{bundle.EditHospsubmedTitle_times}" />
+                    <h:outputLabel value="#{bundle.EditHospsubmedLabel_hospitalization}" for="hospitalization" />
+                    <h:selectOneMenu id="hospitalization" value="#{hospsubmedController.selected.hospitalization}" title="#{bundle.EditHospsubmedTitle_hospitalization}" required="true" requiredMessage="#{bundle.EditHospsubmedRequiredMessage_hospitalization}">
+                        <f:selectItems value="#{hospitalizationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditHospsubmedLabel_submedicine}" for="submedicine" />
+                    <h:selectOneMenu id="submedicine" value="#{hospsubmedController.selected.submedicine}" title="#{bundle.EditHospsubmedTitle_submedicine}" required="true" requiredMessage="#{bundle.EditHospsubmedRequiredMessage_submedicine}">
+                        <f:selectItems value="#{submedicineController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{hospsubmedController.update}" value="#{bundle.EditHospsubmedSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditHospsubmedViewLink}"/>
+                <br />
+                <h:commandLink action="#{hospsubmedController.prepareList}" value="#{bundle.EditHospsubmedShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditHospsubmedIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

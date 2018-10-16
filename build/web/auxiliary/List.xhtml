@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAuxiliaryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAuxiliaryEmpty}" rendered="#{auxiliaryController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{auxiliaryController.items.rowCount > 0}">
+                    <h:outputText value="#{auxiliaryController.pagination.pageFirstItem + 1}..#{auxiliaryController.pagination.pageLastItem + 1}/#{auxiliaryController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{auxiliaryController.previous}" value="#{bundle.Previous} #{auxiliaryController.pagination.pageSize}" rendered="#{auxiliaryController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{auxiliaryController.next}" value="#{bundle.Next} #{auxiliaryController.pagination.pageSize}" rendered="#{auxiliaryController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{auxiliaryController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAuxiliaryTitle_idPerson}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPerson}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAuxiliaryTitle_person}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.person}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{auxiliaryController.prepareView}" value="#{bundle.ListAuxiliaryViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{auxiliaryController.prepareEdit}" value="#{bundle.ListAuxiliaryEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{auxiliaryController.destroy}" value="#{bundle.ListAuxiliaryDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{auxiliaryController.prepareCreate}" value="#{bundle.ListAuxiliaryCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAuxiliaryIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

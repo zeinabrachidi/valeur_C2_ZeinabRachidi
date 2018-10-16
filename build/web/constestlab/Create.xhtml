@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateConstestlabTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateConstestlabLabel_idTestLab}" for="idTestLab" />
+                    <h:inputText id="idTestLab" value="#{constestlabController.selected.idTestLab}" title="#{bundle.CreateConstestlabTitle_idTestLab}" required="true" requiredMessage="#{bundle.CreateConstestlabRequiredMessage_idTestLab}"/>
+                    <h:outputLabel value="#{bundle.CreateConstestlabLabel_idMedicalActCons}" for="idMedicalActCons" />
+                    <h:selectOneMenu id="idMedicalActCons" value="#{constestlabController.selected.idMedicalActCons}" title="#{bundle.CreateConstestlabTitle_idMedicalActCons}" required="true" requiredMessage="#{bundle.CreateConstestlabRequiredMessage_idMedicalActCons}">
+                        <f:selectItems value="#{consultationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateConstestlabLabel_testlab}" for="testlab" />
+                    <h:selectOneMenu id="testlab" value="#{constestlabController.selected.testlab}" title="#{bundle.CreateConstestlabTitle_testlab}" required="true" requiredMessage="#{bundle.CreateConstestlabRequiredMessage_testlab}">
+                        <f:selectItems value="#{testlabController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{constestlabController.create}" value="#{bundle.CreateConstestlabSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{constestlabController.prepareList}" value="#{bundle.CreateConstestlabShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateConstestlabIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

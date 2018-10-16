@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCardDemandTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCardDemandLabel_idcardDemand}"/>
+                    <h:outputText value="#{cardDemandController.selected.idcardDemand}" title="#{bundle.ViewCardDemandTitle_idcardDemand}"/>
+                    <h:outputText value="#{bundle.ViewCardDemandLabel_carddemandDate}"/>
+                    <h:outputText value="#{cardDemandController.selected.carddemandDate}" title="#{bundle.ViewCardDemandTitle_carddemandDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCardDemandLabel_idPerson}"/>
+                    <h:outputText value="#{cardDemandController.selected.idPerson}" title="#{bundle.ViewCardDemandTitle_idPerson}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cardDemandController.destroyAndView}" value="#{bundle.ViewCardDemandDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCardDemandEditLink}"/>
+                <br />
+                <h:commandLink action="#{cardDemandController.prepareCreate}" value="#{bundle.ViewCardDemandCreateLink}" />
+                <br />
+                <h:commandLink action="#{cardDemandController.prepareList}" value="#{bundle.ViewCardDemandShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCardDemandIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

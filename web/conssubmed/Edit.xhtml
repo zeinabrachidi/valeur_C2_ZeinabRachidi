@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditConssubmedTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditConssubmedLabel_qty}" for="qty" />
+                    <h:inputText id="qty" value="#{conssubmedController.selected.qty}" title="#{bundle.EditConssubmedTitle_qty}" />
+                    <h:outputLabel value="#{bundle.EditConssubmedLabel_times}" for="times" />
+                    <h:inputText id="times" value="#{conssubmedController.selected.times}" title="#{bundle.EditConssubmedTitle_times}" />
+                    <h:outputLabel value="#{bundle.EditConssubmedLabel_consultation}" for="consultation" />
+                    <h:selectOneMenu id="consultation" value="#{conssubmedController.selected.consultation}" title="#{bundle.EditConssubmedTitle_consultation}" required="true" requiredMessage="#{bundle.EditConssubmedRequiredMessage_consultation}">
+                        <f:selectItems value="#{consultationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditConssubmedLabel_submedicine}" for="submedicine" />
+                    <h:selectOneMenu id="submedicine" value="#{conssubmedController.selected.submedicine}" title="#{bundle.EditConssubmedTitle_submedicine}" required="true" requiredMessage="#{bundle.EditConssubmedRequiredMessage_submedicine}">
+                        <f:selectItems value="#{submedicineController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{conssubmedController.update}" value="#{bundle.EditConssubmedSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditConssubmedViewLink}"/>
+                <br />
+                <h:commandLink action="#{conssubmedController.prepareList}" value="#{bundle.EditConssubmedShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditConssubmedIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPatientcivilTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPatientcivilLabel_patientcivilPK_date}" for="patientcivilPK_date" />
+                    <h:inputText id="patientcivilPK_date" value="#{patientcivilController.selected.patientcivilPK.date}" title="#{bundle.EditPatientcivilTitle_patientcivilPK_date}" required="true" requiredMessage="#{bundle.EditPatientcivilRequiredMessage_patientcivilPK_date}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPatientcivilLabel_patient}" for="patient" />
+                    <h:selectOneMenu id="patient" value="#{patientcivilController.selected.patient}" title="#{bundle.EditPatientcivilTitle_patient}" required="true" requiredMessage="#{bundle.EditPatientcivilRequiredMessage_patient}">
+                        <f:selectItems value="#{patientController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPatientcivilLabel_idCivilStatus}" for="idCivilStatus" />
+                    <h:selectOneMenu id="idCivilStatus" value="#{patientcivilController.selected.idCivilStatus}" title="#{bundle.EditPatientcivilTitle_idCivilStatus}" >
+                        <f:selectItems value="#{civilstatusController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{patientcivilController.update}" value="#{bundle.EditPatientcivilSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPatientcivilViewLink}"/>
+                <br />
+                <h:commandLink action="#{patientcivilController.prepareList}" value="#{bundle.EditPatientcivilShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPatientcivilIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

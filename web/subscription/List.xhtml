@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSubscriptionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSubscriptionEmpty}" rendered="#{subscriptionController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{subscriptionController.items.rowCount > 0}">
+                    <h:outputText value="#{subscriptionController.pagination.pageFirstItem + 1}..#{subscriptionController.pagination.pageLastItem + 1}/#{subscriptionController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{subscriptionController.previous}" value="#{bundle.Previous} #{subscriptionController.pagination.pageSize}" rendered="#{subscriptionController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{subscriptionController.next}" value="#{bundle.Next} #{subscriptionController.pagination.pageSize}" rendered="#{subscriptionController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{subscriptionController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubscriptionTitle_idsubscription}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsubscription}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubscriptionTitle_subscriptionDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subscriptionDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubscriptionTitle_idPerson}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPerson}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{subscriptionController.prepareView}" value="#{bundle.ListSubscriptionViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{subscriptionController.prepareEdit}" value="#{bundle.ListSubscriptionEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{subscriptionController.destroy}" value="#{bundle.ListSubscriptionDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{subscriptionController.prepareCreate}" value="#{bundle.ListSubscriptionCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSubscriptionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

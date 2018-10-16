@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTakingvitalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTakingvitalLabel_idtakingvital}" for="idtakingvital" />
+                    <h:inputText id="idtakingvital" value="#{takingvitalController.selected.idtakingvital}" title="#{bundle.EditTakingvitalTitle_idtakingvital}" required="true" requiredMessage="#{bundle.EditTakingvitalRequiredMessage_idtakingvital}"/>
+                    <h:outputLabel value="#{bundle.EditTakingvitalLabel_takingvitalDate}" for="takingvitalDate" />
+                    <h:inputText id="takingvitalDate" value="#{takingvitalController.selected.takingvitalDate}" title="#{bundle.EditTakingvitalTitle_takingvitalDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTakingvitalLabel_weight}" for="weight" />
+                    <h:inputText id="weight" value="#{takingvitalController.selected.weight}" title="#{bundle.EditTakingvitalTitle_weight}" />
+                    <h:outputLabel value="#{bundle.EditTakingvitalLabel_heartBeat}" for="heartBeat" />
+                    <h:inputText id="heartBeat" value="#{takingvitalController.selected.heartBeat}" title="#{bundle.EditTakingvitalTitle_heartBeat}" />
+                    <h:outputLabel value="#{bundle.EditTakingvitalLabel_اhighPressure}" for="اhighPressure" />
+                    <h:inputText id="اhighPressure" value="#{takingvitalController.selected.اhighPressure}" title="#{bundle.EditTakingvitalTitle_اhighPressure}" />
+                    <h:outputLabel value="#{bundle.EditTakingvitalLabel_lowPressure}" for="lowPressure" />
+                    <h:inputText id="lowPressure" value="#{takingvitalController.selected.lowPressure}" title="#{bundle.EditTakingvitalTitle_lowPressure}" />
+                    <h:outputLabel value="#{bundle.EditTakingvitalLabel_idMedicalActHosp}" for="idMedicalActHosp" />
+                    <h:selectOneMenu id="idMedicalActHosp" value="#{takingvitalController.selected.idMedicalActHosp}" title="#{bundle.EditTakingvitalTitle_idMedicalActHosp}" >
+                        <f:selectItems value="#{hospitalizationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTakingvitalLabel_idPersonAux}" for="idPersonAux" />
+                    <h:selectOneMenu id="idPersonAux" value="#{takingvitalController.selected.idPersonAux}" title="#{bundle.EditTakingvitalTitle_idPersonAux}" >
+                        <f:selectItems value="#{auxiliaryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{takingvitalController.update}" value="#{bundle.EditTakingvitalSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTakingvitalViewLink}"/>
+                <br />
+                <h:commandLink action="#{takingvitalController.prepareList}" value="#{bundle.EditTakingvitalShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTakingvitalIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

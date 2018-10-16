@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAuxiliaryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAuxiliaryLabel_idPerson}" for="idPerson" />
+                    <h:inputText id="idPerson" value="#{auxiliaryController.selected.idPerson}" title="#{bundle.EditAuxiliaryTitle_idPerson}" required="true" requiredMessage="#{bundle.EditAuxiliaryRequiredMessage_idPerson}"/>
+                    <h:outputLabel value="#{bundle.EditAuxiliaryLabel_person}" for="person" />
+                    <h:selectOneMenu id="person" value="#{auxiliaryController.selected.person}" title="#{bundle.EditAuxiliaryTitle_person}" required="true" requiredMessage="#{bundle.EditAuxiliaryRequiredMessage_person}">
+                        <f:selectItems value="#{personController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{auxiliaryController.update}" value="#{bundle.EditAuxiliarySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAuxiliaryViewLink}"/>
+                <br />
+                <h:commandLink action="#{auxiliaryController.prepareList}" value="#{bundle.EditAuxiliaryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAuxiliaryIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

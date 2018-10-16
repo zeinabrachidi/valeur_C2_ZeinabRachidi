@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditReasonsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditReasonsLabel_idreasons}" for="idreasons" />
+                    <h:inputText id="idreasons" value="#{reasonsController.selected.idreasons}" title="#{bundle.EditReasonsTitle_idreasons}" required="true" requiredMessage="#{bundle.EditReasonsRequiredMessage_idreasons}"/>
+                    <h:outputLabel value="#{bundle.EditReasonsLabel_reasonsDesc}" for="reasonsDesc" />
+                    <h:inputText id="reasonsDesc" value="#{reasonsController.selected.reasonsDesc}" title="#{bundle.EditReasonsTitle_reasonsDesc}" />
+                </h:panelGrid>
+                <h:commandLink action="#{reasonsController.update}" value="#{bundle.EditReasonsSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditReasonsViewLink}"/>
+                <br />
+                <h:commandLink action="#{reasonsController.prepareList}" value="#{bundle.EditReasonsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditReasonsIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

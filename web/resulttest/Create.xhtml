@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateResulttestTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateResulttestLabel_descResult}" for="descResult" />
+                    <h:inputText id="descResult" value="#{resulttestController.selected.descResult}" title="#{bundle.CreateResulttestTitle_descResult}" />
+                    <h:outputLabel value="#{bundle.CreateResulttestLabel_testlab}" for="testlab" />
+                    <h:selectOneMenu id="testlab" value="#{resulttestController.selected.testlab}" title="#{bundle.CreateResulttestTitle_testlab}" required="true" requiredMessage="#{bundle.CreateResulttestRequiredMessage_testlab}">
+                        <f:selectItems value="#{testlabController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateResulttestLabel_test}" for="test" />
+                    <h:selectOneMenu id="test" value="#{resulttestController.selected.test}" title="#{bundle.CreateResulttestTitle_test}" required="true" requiredMessage="#{bundle.CreateResulttestRequiredMessage_test}">
+                        <f:selectItems value="#{testController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{resulttestController.create}" value="#{bundle.CreateResulttestSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{resulttestController.prepareList}" value="#{bundle.CreateResulttestShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateResulttestIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

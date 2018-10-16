@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTestlabTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTestlabLabel_idTestLab}" for="idTestLab" />
+                    <h:inputText id="idTestLab" value="#{testlabController.selected.idTestLab}" title="#{bundle.EditTestlabTitle_idTestLab}" required="true" requiredMessage="#{bundle.EditTestlabRequiredMessage_idTestLab}"/>
+                    <h:outputLabel value="#{bundle.EditTestlabLabel_dateTest}" for="dateTest" />
+                    <h:inputText id="dateTest" value="#{testlabController.selected.dateTest}" title="#{bundle.EditTestlabTitle_dateTest}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTestlabLabel_iidPersonTech}" for="iidPersonTech" />
+                    <h:selectOneMenu id="iidPersonTech" value="#{testlabController.selected.iidPersonTech}" title="#{bundle.EditTestlabTitle_iidPersonTech}" >
+                        <f:selectItems value="#{technicianController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTestlabLabel_idLaboratory}" for="idLaboratory" />
+                    <h:selectOneMenu id="idLaboratory" value="#{testlabController.selected.idLaboratory}" title="#{bundle.EditTestlabTitle_idLaboratory}" >
+                        <f:selectItems value="#{laboratoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTestlabLabel_hosptestlab}" for="hosptestlab" />
+                    <h:selectOneMenu id="hosptestlab" value="#{testlabController.selected.hosptestlab}" title="#{bundle.EditTestlabTitle_hosptestlab}" >
+                        <f:selectItems value="#{hosptestlabController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTestlabLabel_constestlab}" for="constestlab" />
+                    <h:selectOneMenu id="constestlab" value="#{testlabController.selected.constestlab}" title="#{bundle.EditTestlabTitle_constestlab}" >
+                        <f:selectItems value="#{constestlabController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{testlabController.update}" value="#{bundle.EditTestlabSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTestlabViewLink}"/>
+                <br />
+                <h:commandLink action="#{testlabController.prepareList}" value="#{bundle.EditTestlabShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTestlabIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

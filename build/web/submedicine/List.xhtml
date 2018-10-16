@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSubmedicineTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSubmedicineEmpty}" rendered="#{submedicineController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{submedicineController.items.rowCount > 0}">
+                    <h:outputText value="#{submedicineController.pagination.pageFirstItem + 1}..#{submedicineController.pagination.pageLastItem + 1}/#{submedicineController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{submedicineController.previous}" value="#{bundle.Previous} #{submedicineController.pagination.pageSize}" rendered="#{submedicineController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{submedicineController.next}" value="#{bundle.Next} #{submedicineController.pagination.pageSize}" rendered="#{submedicineController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{submedicineController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubmedicineTitle_idSubmedicine}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idSubmedicine}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubmedicineTitle_submedicineDose}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.submedicineDose}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubmedicineTitle_idMedicineType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMedicineType}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubmedicineTitle_idMedicine}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMedicine}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSubmedicineTitle_idUnit}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUnit}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{submedicineController.prepareView}" value="#{bundle.ListSubmedicineViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{submedicineController.prepareEdit}" value="#{bundle.ListSubmedicineEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{submedicineController.destroy}" value="#{bundle.ListSubmedicineDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{submedicineController.prepareCreate}" value="#{bundle.ListSubmedicineCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSubmedicineIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

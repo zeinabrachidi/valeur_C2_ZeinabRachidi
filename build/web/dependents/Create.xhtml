@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDependentsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDependentsLabel_person}" for="person" />
+                    <h:selectOneMenu id="person" value="#{dependentsController.selected.person}" title="#{bundle.CreateDependentsTitle_person}" required="true" requiredMessage="#{bundle.CreateDependentsRequiredMessage_person}">
+                        <f:selectItems value="#{personController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDependentsLabel_patient}" for="patient" />
+                    <h:selectOneMenu id="patient" value="#{dependentsController.selected.patient}" title="#{bundle.CreateDependentsTitle_patient}" required="true" requiredMessage="#{bundle.CreateDependentsRequiredMessage_patient}">
+                        <f:selectItems value="#{patientController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateDependentsLabel_idRelation}" for="idRelation" />
+                    <h:selectOneMenu id="idRelation" value="#{dependentsController.selected.idRelation}" title="#{bundle.CreateDependentsTitle_idRelation}" >
+                        <f:selectItems value="#{relatioshipController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{dependentsController.create}" value="#{bundle.CreateDependentsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{dependentsController.prepareList}" value="#{bundle.CreateDependentsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDependentsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHospsubmedTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListHospsubmedEmpty}" rendered="#{hospsubmedController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{hospsubmedController.items.rowCount > 0}">
+                    <h:outputText value="#{hospsubmedController.pagination.pageFirstItem + 1}..#{hospsubmedController.pagination.pageLastItem + 1}/#{hospsubmedController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{hospsubmedController.previous}" value="#{bundle.Previous} #{hospsubmedController.pagination.pageSize}" rendered="#{hospsubmedController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{hospsubmedController.next}" value="#{bundle.Next} #{hospsubmedController.pagination.pageSize}" rendered="#{hospsubmedController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{hospsubmedController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospsubmedTitle_qty}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.qty}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospsubmedTitle_times}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.times}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospsubmedTitle_hospitalization}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hospitalization}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospsubmedTitle_submedicine}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.submedicine}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{hospsubmedController.prepareView}" value="#{bundle.ListHospsubmedViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hospsubmedController.prepareEdit}" value="#{bundle.ListHospsubmedEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hospsubmedController.destroy}" value="#{bundle.ListHospsubmedDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{hospsubmedController.prepareCreate}" value="#{bundle.ListHospsubmedCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListHospsubmedIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

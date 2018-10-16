@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHospoperationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListHospoperationEmpty}" rendered="#{hospoperationController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{hospoperationController.items.rowCount > 0}">
+                    <h:outputText value="#{hospoperationController.pagination.pageFirstItem + 1}..#{hospoperationController.pagination.pageLastItem + 1}/#{hospoperationController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{hospoperationController.previous}" value="#{bundle.Previous} #{hospoperationController.pagination.pageSize}" rendered="#{hospoperationController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{hospoperationController.next}" value="#{bundle.Next} #{hospoperationController.pagination.pageSize}" rendered="#{hospoperationController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{hospoperationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospoperationTitle_hospitalization}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hospitalization}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospoperationTitle_operation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.operation}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospoperationTitle_idPersonDoc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPersonDoc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{hospoperationController.prepareView}" value="#{bundle.ListHospoperationViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hospoperationController.prepareEdit}" value="#{bundle.ListHospoperationEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hospoperationController.destroy}" value="#{bundle.ListHospoperationDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{hospoperationController.prepareCreate}" value="#{bundle.ListHospoperationCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListHospoperationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

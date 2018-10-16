@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMedicalacttypeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMedicalacttypeEmpty}" rendered="#{medicalacttypeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{medicalacttypeController.items.rowCount > 0}">
+                    <h:outputText value="#{medicalacttypeController.pagination.pageFirstItem + 1}..#{medicalacttypeController.pagination.pageLastItem + 1}/#{medicalacttypeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{medicalacttypeController.previous}" value="#{bundle.Previous} #{medicalacttypeController.pagination.pageSize}" rendered="#{medicalacttypeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{medicalacttypeController.next}" value="#{bundle.Next} #{medicalacttypeController.pagination.pageSize}" rendered="#{medicalacttypeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{medicalacttypeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalacttypeTitle_idmedicalacttype}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idmedicalacttype}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMedicalacttypeTitle_medicalacttypeDesc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.medicalacttypeDesc}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{medicalacttypeController.prepareView}" value="#{bundle.ListMedicalacttypeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{medicalacttypeController.prepareEdit}" value="#{bundle.ListMedicalacttypeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{medicalacttypeController.destroy}" value="#{bundle.ListMedicalacttypeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{medicalacttypeController.prepareCreate}" value="#{bundle.ListMedicalacttypeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMedicalacttypeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

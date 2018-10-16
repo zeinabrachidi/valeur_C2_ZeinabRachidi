@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSubmedicineTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSubmedicineLabel_idSubmedicine}" for="idSubmedicine" />
+                    <h:inputText id="idSubmedicine" value="#{submedicineController.selected.idSubmedicine}" title="#{bundle.CreateSubmedicineTitle_idSubmedicine}" required="true" requiredMessage="#{bundle.CreateSubmedicineRequiredMessage_idSubmedicine}"/>
+                    <h:outputLabel value="#{bundle.CreateSubmedicineLabel_submedicineDose}" for="submedicineDose" />
+                    <h:inputText id="submedicineDose" value="#{submedicineController.selected.submedicineDose}" title="#{bundle.CreateSubmedicineTitle_submedicineDose}" />
+                    <h:outputLabel value="#{bundle.CreateSubmedicineLabel_idMedicineType}" for="idMedicineType" />
+                    <h:selectOneMenu id="idMedicineType" value="#{submedicineController.selected.idMedicineType}" title="#{bundle.CreateSubmedicineTitle_idMedicineType}" >
+                        <f:selectItems value="#{medicinetypeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSubmedicineLabel_idMedicine}" for="idMedicine" />
+                    <h:selectOneMenu id="idMedicine" value="#{submedicineController.selected.idMedicine}" title="#{bundle.CreateSubmedicineTitle_idMedicine}" >
+                        <f:selectItems value="#{medicineController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSubmedicineLabel_idUnit}" for="idUnit" />
+                    <h:selectOneMenu id="idUnit" value="#{submedicineController.selected.idUnit}" title="#{bundle.CreateSubmedicineTitle_idUnit}" >
+                        <f:selectItems value="#{unitController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{submedicineController.create}" value="#{bundle.CreateSubmedicineSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{submedicineController.prepareList}" value="#{bundle.CreateSubmedicineShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSubmedicineIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

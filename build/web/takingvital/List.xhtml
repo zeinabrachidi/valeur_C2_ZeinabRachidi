@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTakingvitalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTakingvitalEmpty}" rendered="#{takingvitalController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{takingvitalController.items.rowCount > 0}">
+                    <h:outputText value="#{takingvitalController.pagination.pageFirstItem + 1}..#{takingvitalController.pagination.pageLastItem + 1}/#{takingvitalController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{takingvitalController.previous}" value="#{bundle.Previous} #{takingvitalController.pagination.pageSize}" rendered="#{takingvitalController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{takingvitalController.next}" value="#{bundle.Next} #{takingvitalController.pagination.pageSize}" rendered="#{takingvitalController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{takingvitalController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTakingvitalTitle_idtakingvital}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idtakingvital}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTakingvitalTitle_takingvitalDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.takingvitalDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTakingvitalTitle_weight}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.weight}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTakingvitalTitle_heartBeat}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.heartBeat}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTakingvitalTitle_اhighPressure}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.اhighPressure}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTakingvitalTitle_lowPressure}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lowPressure}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTakingvitalTitle_idMedicalActHosp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMedicalActHosp}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTakingvitalTitle_idPersonAux}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPersonAux}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{takingvitalController.prepareView}" value="#{bundle.ListTakingvitalViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{takingvitalController.prepareEdit}" value="#{bundle.ListTakingvitalEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{takingvitalController.destroy}" value="#{bundle.ListTakingvitalDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{takingvitalController.prepareCreate}" value="#{bundle.ListTakingvitalCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTakingvitalIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

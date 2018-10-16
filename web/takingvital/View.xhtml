@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTakingvitalTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTakingvitalLabel_idtakingvital}"/>
+                    <h:outputText value="#{takingvitalController.selected.idtakingvital}" title="#{bundle.ViewTakingvitalTitle_idtakingvital}"/>
+                    <h:outputText value="#{bundle.ViewTakingvitalLabel_takingvitalDate}"/>
+                    <h:outputText value="#{takingvitalController.selected.takingvitalDate}" title="#{bundle.ViewTakingvitalTitle_takingvitalDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTakingvitalLabel_weight}"/>
+                    <h:outputText value="#{takingvitalController.selected.weight}" title="#{bundle.ViewTakingvitalTitle_weight}"/>
+                    <h:outputText value="#{bundle.ViewTakingvitalLabel_heartBeat}"/>
+                    <h:outputText value="#{takingvitalController.selected.heartBeat}" title="#{bundle.ViewTakingvitalTitle_heartBeat}"/>
+                    <h:outputText value="#{bundle.ViewTakingvitalLabel_اhighPressure}"/>
+                    <h:outputText value="#{takingvitalController.selected.اhighPressure}" title="#{bundle.ViewTakingvitalTitle_اhighPressure}"/>
+                    <h:outputText value="#{bundle.ViewTakingvitalLabel_lowPressure}"/>
+                    <h:outputText value="#{takingvitalController.selected.lowPressure}" title="#{bundle.ViewTakingvitalTitle_lowPressure}"/>
+                    <h:outputText value="#{bundle.ViewTakingvitalLabel_idMedicalActHosp}"/>
+                    <h:outputText value="#{takingvitalController.selected.idMedicalActHosp}" title="#{bundle.ViewTakingvitalTitle_idMedicalActHosp}"/>
+                    <h:outputText value="#{bundle.ViewTakingvitalLabel_idPersonAux}"/>
+                    <h:outputText value="#{takingvitalController.selected.idPersonAux}" title="#{bundle.ViewTakingvitalTitle_idPersonAux}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{takingvitalController.destroyAndView}" value="#{bundle.ViewTakingvitalDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTakingvitalEditLink}"/>
+                <br />
+                <h:commandLink action="#{takingvitalController.prepareCreate}" value="#{bundle.ViewTakingvitalCreateLink}" />
+                <br />
+                <h:commandLink action="#{takingvitalController.prepareList}" value="#{bundle.ViewTakingvitalShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTakingvitalIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

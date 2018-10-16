@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPatientcivilTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPatientcivilLabel_patientcivilPK_date}"/>
+                    <h:outputText value="#{patientcivilController.selected.patientcivilPK.date}" title="#{bundle.ViewPatientcivilTitle_patientcivilPK_date}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPatientcivilLabel_patient}"/>
+                    <h:outputText value="#{patientcivilController.selected.patient}" title="#{bundle.ViewPatientcivilTitle_patient}"/>
+                    <h:outputText value="#{bundle.ViewPatientcivilLabel_idCivilStatus}"/>
+                    <h:outputText value="#{patientcivilController.selected.idCivilStatus}" title="#{bundle.ViewPatientcivilTitle_idCivilStatus}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{patientcivilController.destroyAndView}" value="#{bundle.ViewPatientcivilDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPatientcivilEditLink}"/>
+                <br />
+                <h:commandLink action="#{patientcivilController.prepareCreate}" value="#{bundle.ViewPatientcivilCreateLink}" />
+                <br />
+                <h:commandLink action="#{patientcivilController.prepareList}" value="#{bundle.ViewPatientcivilShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPatientcivilIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

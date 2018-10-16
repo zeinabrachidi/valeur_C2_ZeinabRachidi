@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMedicalcardTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMedicalcardLabel_idmedicaCard}" for="idmedicaCard" />
+                    <h:inputText id="idmedicaCard" value="#{medicalcardController.selected.idmedicaCard}" title="#{bundle.CreateMedicalcardTitle_idmedicaCard}" required="true" requiredMessage="#{bundle.CreateMedicalcardRequiredMessage_idmedicaCard}"/>
+                    <h:outputLabel value="#{bundle.CreateMedicalcardLabel_emissionDate}" for="emissionDate" />
+                    <h:inputText id="emissionDate" value="#{medicalcardController.selected.emissionDate}" title="#{bundle.CreateMedicalcardTitle_emissionDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateMedicalcardLabel_idPersonPat}" for="idPersonPat" />
+                    <h:selectOneMenu id="idPersonPat" value="#{medicalcardController.selected.idPersonPat}" title="#{bundle.CreateMedicalcardTitle_idPersonPat}" >
+                        <f:selectItems value="#{patientController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{medicalcardController.create}" value="#{bundle.CreateMedicalcardSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{medicalcardController.prepareList}" value="#{bundle.CreateMedicalcardShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMedicalcardIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

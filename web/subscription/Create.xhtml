@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSubscriptionTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSubscriptionLabel_idsubscription}" for="idsubscription" />
+                    <h:inputText id="idsubscription" value="#{subscriptionController.selected.idsubscription}" title="#{bundle.CreateSubscriptionTitle_idsubscription}" required="true" requiredMessage="#{bundle.CreateSubscriptionRequiredMessage_idsubscription}"/>
+                    <h:outputLabel value="#{bundle.CreateSubscriptionLabel_subscriptionDate}" for="subscriptionDate" />
+                    <h:inputText id="subscriptionDate" value="#{subscriptionController.selected.subscriptionDate}" title="#{bundle.CreateSubscriptionTitle_subscriptionDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateSubscriptionLabel_idPerson}" for="idPerson" />
+                    <h:selectOneMenu id="idPerson" value="#{subscriptionController.selected.idPerson}" title="#{bundle.CreateSubscriptionTitle_idPerson}" >
+                        <f:selectItems value="#{personController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{subscriptionController.create}" value="#{bundle.CreateSubscriptionSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{subscriptionController.prepareList}" value="#{bundle.CreateSubscriptionShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSubscriptionIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

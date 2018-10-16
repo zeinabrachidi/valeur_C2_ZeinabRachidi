@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDeathTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDeathLabel_iddeath}"/>
+                    <h:outputText value="#{deathController.selected.iddeath}" title="#{bundle.ViewDeathTitle_iddeath}"/>
+                    <h:outputText value="#{bundle.ViewDeathLabel_deathDate}"/>
+                    <h:outputText value="#{deathController.selected.deathDate}" title="#{bundle.ViewDeathTitle_deathDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewDeathLabel_idPerson}"/>
+                    <h:outputText value="#{deathController.selected.idPerson}" title="#{bundle.ViewDeathTitle_idPerson}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{deathController.destroyAndView}" value="#{bundle.ViewDeathDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDeathEditLink}"/>
+                <br />
+                <h:commandLink action="#{deathController.prepareCreate}" value="#{bundle.ViewDeathCreateLink}" />
+                <br />
+                <h:commandLink action="#{deathController.prepareList}" value="#{bundle.ViewDeathShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDeathIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

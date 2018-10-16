@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCardDemandTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCardDemandEmpty}" rendered="#{cardDemandController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{cardDemandController.items.rowCount > 0}">
+                    <h:outputText value="#{cardDemandController.pagination.pageFirstItem + 1}..#{cardDemandController.pagination.pageLastItem + 1}/#{cardDemandController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{cardDemandController.previous}" value="#{bundle.Previous} #{cardDemandController.pagination.pageSize}" rendered="#{cardDemandController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{cardDemandController.next}" value="#{bundle.Next} #{cardDemandController.pagination.pageSize}" rendered="#{cardDemandController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{cardDemandController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardDemandTitle_idcardDemand}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idcardDemand}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardDemandTitle_carddemandDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.carddemandDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCardDemandTitle_idPerson}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPerson}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{cardDemandController.prepareView}" value="#{bundle.ListCardDemandViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cardDemandController.prepareEdit}" value="#{bundle.ListCardDemandEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cardDemandController.destroy}" value="#{bundle.ListCardDemandDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{cardDemandController.prepareCreate}" value="#{bundle.ListCardDemandCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCardDemandIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

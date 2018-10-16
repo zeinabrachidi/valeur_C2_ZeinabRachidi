@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>WELCOME TO MYRIAM CENTER FOR MEDICAL SERVICES</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <style>
+            td { width: 100px;
+                 font-size: 16px;
+                 font-family: courier;
+                 color: blue;  
+            }
+            body{
+                background-image: url("image1.jpg"), url("image2.jpg");
+                background-color:white;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        
+        <h1 style="text-align: center;background-color: white; color: red;">WELCOME TO MYRIAM CENTER FOR MEDICAL SERVICES</h1>
+        <h1 style="text-align: center; color: red;font-size: x-large; background-color: white;">For assistance contact Zeinab.Rachidi@isae.edu.lb</h1>
+        <table>
+            <tr>
+                <td><a href="contactUs.xhtml">Contact Us</a></td>
+                <td><a href="SignUP.xhtml">Register</a></td>
+                <td><a href="Login.xhtml">Login</a></td>
+                <td><a href="Patient.xhtml">patient</a></td>
+                <td><a href="Doctor.xhtml">Doctor</a></td>
+                <td><a href="HeadOfService.xhtml">Administrative</a></td>
+                <td><a href="Auxiliary.xhtml">Auxiliary</a></td>
+                <td><a href="Technician.xhtml">Technician</a></td>
+
+            </tr>
+        </table>
+        <div style="background-color: white; width: 200px;">
+        <br />
+        <h:link outcome="/city/List" value="Show All City Items"/>
+        <br />
+        <h:link outcome="/person/List" value="Show All Person Items"/>
+        <br />
+        <h:link outcome="/profession/List" value="Show All Profession Items"/>
+        <br />
+        <h:link outcome="/region/List" value="Show All Region Items"/>
+        <br />
+        <h:link outcome="/street/List" value="Show All Street Items"/>
+        <br />
+        <h:link outcome="/subscription/List" value="subscription"/>
+        <br />
+        <h:link outcome="/auxiliary/List" value="Show All Auxiliary Items"/>
+        <br />
+        <h:link outcome="/cardDemand/List" value="Show All CardDemand Items"/>
+        <br />
+        <h:link outcome="/chefservice/List" value="Show All Chefservice Items"/>
+        <br />
+        <h:link outcome="/city/List" value="Show All City Items"/>
+        <br />
+        <h:link outcome="/civilstatus/List" value="Show All Civilstatus Items"/>
+        <br />
+        <h:link outcome="/conssubmed/List" value="Show All Conssubmed Items"/>
+        <br />
+        <h:link outcome="/constestlab/List" value="Show All Constestlab Items"/>
+        <br />
+        <h:link outcome="/consultation/List" value="Show All Consultation Items"/>
+        <br />
+        <h:link outcome="/consultmedication/List" value="Show All Consultmedication Items"/>
+        <br />
+        <h:link outcome="/death/List" value="Show All Death Items"/>
+        <br />
+        <h:link outcome="/dependents/List" value="Show All Dependents Items"/>
+        <br />
+        <h:link outcome="/diseases/List" value="Show All Diseases Items"/>
+        <br />
+        <h:link outcome="/doctor/List" value="Show All Doctor Items"/>
+        <br />
+        <h:link outcome="/family/List" value="Show All Family Items"/>
+        <br />
+        <h:link outcome="/hospital/List" value="Show All Hospital Items"/>
+        <br />
+        <h:link outcome="/hospitalization/List" value="Show All Hospitalization Items"/>
+        <br />
+        <h:link outcome="/hospmedication/List" value="Show All Hospmedication Items"/>
+        <br />
+        <h:link outcome="/hospoperation/List" value="Show All Hospoperation Items"/>
+        <br />
+        <h:link outcome="/hospsubmed/List" value="Show All Hospsubmed Items"/>
+        <br />
+        <h:link outcome="/hosptestlab/List" value="Show All Hosptestlab Items"/>
+        <br />
+        <h:link outcome="/insurance/List" value="Show All Insurance Items"/>
+        <br />
+        <h:link outcome="/laboratory/List" value="Show All Laboratory Items"/>
+        <br />
+        <h:link outcome="/medicalact/List" value="Show All Medicalact Items"/>
+        <br />
+        <h:link outcome="/medicalacttype/List" value="Show All Medicalacttype Items"/>
+        <br />
+        <h:link outcome="/medicalcard/List" value="Show All Medicalcard Items"/>
+        <br />
+        <h:link outcome="/medication/List" value="Show All Medication Items"/>
+        <br />
+        <h:link outcome="/medicine/List" value="Show All Medicine Items"/>
+        <br />
+        <h:link outcome="/medicinetype/List" value="Show All Medicinetype Items"/>
+        <br />
+        <h:link outcome="/medisubmed/List" value="Show All Medisubmed Items"/>
+        <br />
+        <h:link outcome="/nationality/List" value="Show All Nationality Items"/>
+        <br />
+        <h:link outcome="/operation/List" value="Show All Operation Items"/>
+        <br />
+        <h:link outcome="/patient/List" value="Show All Patient Items"/>
+        <br />
+        <h:link outcome="/patientcivil/List" value="Show All Patientcivil Items"/>
+        <br />
+        <h:link outcome="/person/List" value="Show All Person Items"/>
+        <br />
+        <h:link outcome="/pharmacy/List" value="Show All Pharmacy Items"/>
+        <br />
+        <h:link outcome="/profession/List" value="Show All Profession Items"/>
+        <br />
+        <h:link outcome="/reasons/List" value="Show All Reasons Items"/>
+        <br />
+        <h:link outcome="/region/List" value="Show All Region Items"/>
+        <br />
+        <h:link outcome="/relatioship/List" value="Show All Relatioship Items"/>
+        <br />
+        <h:link outcome="/resulttest/List" value="Show All Resulttest Items"/>
+        <br />
+        <h:link outcome="/speciality/List" value="Show All Speciality Items"/>
+        <br />
+        <h:link outcome="/street/List" value="Show All Street Items"/>
+        <br />
+        <h:link outcome="/submedicine/List" value="Show All Submedicine Items"/>
+        <br />
+        <h:link outcome="/subscription/List" value="Show All Subscription Items"/>
+        <br />
+        <h:link outcome="/takingvital/List" value="Show All Takingvital Items"/>
+        <br />
+        <h:link outcome="/technician/List" value="Show All Technician Items"/>
+        <br />
+        <h:link outcome="/test/List" value="Show All Test Items"/>
+        <br />
+        <h:link outcome="/testlab/List" value="Show All Testlab Items"/>
+        <br />
+        <h:link outcome="/testlabtest/List" value="Show All Testlabtest Items"/>
+        <br />
+        <h:link outcome="/testpricing/List" value="Show All Testpricing Items"/>
+        <br />
+        <h:link outcome="/unit/List" value="Show All Unit Items"/>
+        <br />
+        <h:link outcome="/vaccines/List" value="Show All Vaccines Items"/>
+        <br />
+        <h:link outcome="/auxiliary/List" value="Show All Auxiliary Items"/>
+        <br />
+        <h:link outcome="/cardDemand/List" value="Show All CardDemand Items"/>
+        <br />
+        <h:link outcome="/chefservice/List" value="Show All Chefservice Items"/>
+        <br />
+        <h:link outcome="/city/List" value="Show All City Items"/>
+        <br />
+        <h:link outcome="/civilstatus/List" value="Show All Civilstatus Items"/>
+        <br />
+        <h:link outcome="/conssubmed/List" value="Show All Conssubmed Items"/>
+        <br />
+        <h:link outcome="/constestlab/List" value="Show All Constestlab Items"/>
+        <br />
+        <h:link outcome="/consultation/List" value="Show All Consultation Items"/>
+        <br />
+        <h:link outcome="/consultmedication/List" value="Show All Consultmedication Items"/>
+        <br />
+        <h:link outcome="/death/List" value="Show All Death Items"/>
+        <br />
+        <h:link outcome="/dependents/List" value="Show All Dependents Items"/>
+        <br />
+        <h:link outcome="/diseases/List" value="Show All Diseases Items"/>
+        <br />
+        <h:link outcome="/doctor/List" value="Show All Doctor Items"/>
+        <br />
+        <h:link outcome="/family/List" value="Show All Family Items"/>
+        <br />
+        <h:link outcome="/hospital/List" value="Show All Hospital Items"/>
+        <br />
+        <h:link outcome="/hospitalization/List" value="Show All Hospitalization Items"/>
+        <br />
+        <h:link outcome="/hospmedication/List" value="Show All Hospmedication Items"/>
+        <br />
+        <h:link outcome="/hospoperation/List" value="Show All Hospoperation Items"/>
+        <br />
+        <h:link outcome="/hospsubmed/List" value="Show All Hospsubmed Items"/>
+        <br />
+        <h:link outcome="/hosptestlab/List" value="Show All Hosptestlab Items"/>
+        <br />
+        <h:link outcome="/insurance/List" value="Show All Insurance Items"/>
+        <br />
+        <h:link outcome="/laboratory/List" value="Show All Laboratory Items"/>
+        <br />
+        <h:link outcome="/medicalact/List" value="Show All Medicalact Items"/>
+        <br />
+        <h:link outcome="/medicalacttype/List" value="Show All Medicalacttype Items"/>
+        <br />
+        <h:link outcome="/medicalcard/List" value="Show All Medicalcard Items"/>
+        <br />
+        <h:link outcome="/medication/List" value="Show All Medication Items"/>
+        <br />
+        <h:link outcome="/medicine/List" value="Show All Medicine Items"/>
+        <br />
+        <h:link outcome="/medicinetype/List" value="Show All Medicinetype Items"/>
+        <br />
+        <h:link outcome="/medisubmed/List" value="Show All Medisubmed Items"/>
+        <br />
+        <h:link outcome="/nationality/List" value="Show All Nationality Items"/>
+        <br />
+        <h:link outcome="/operation/List" value="Show All Operation Items"/>
+        <br />
+        <h:link outcome="/patient/List" value="Show All Patient Items"/>
+        <br />
+        <h:link outcome="/patientcivil/List" value="Show All Patientcivil Items"/>
+        <br />
+        <h:link outcome="/person/List" value="Show All Person Items"/>
+        <br />
+        <h:link outcome="/pharmacy/List" value="Show All Pharmacy Items"/>
+        <br />
+        <h:link outcome="/profession/List" value="Show All Profession Items"/>
+        <br />
+        <h:link outcome="/reasons/List" value="Show All Reasons Items"/>
+        <br />
+        <h:link outcome="/region/List" value="Show All Region Items"/>
+        <br />
+        <h:link outcome="/relatioship/List" value="Show All Relatioship Items"/>
+        <br />
+        <h:link outcome="/resulttest/List" value="Show All Resulttest Items"/>
+        <br />
+        <h:link outcome="/speciality/List" value="Show All Speciality Items"/>
+        <br />
+        <h:link outcome="/street/List" value="Show All Street Items"/>
+        <br />
+        <h:link outcome="/submedicine/List" value="Show All Submedicine Items"/>
+        <br />
+        <h:link outcome="/subscription/List" value="Show All Subscription Items"/>
+        <br />
+        <h:link outcome="/takingvital/List" value="Show All Takingvital Items"/>
+        <br />
+        <h:link outcome="/technician/List" value="Show All Technician Items"/>
+        <br />
+        <h:link outcome="/test/List" value="Show All Test Items"/>
+        <br />
+        <h:link outcome="/testlab/List" value="Show All Testlab Items"/>
+        <br />
+        <h:link outcome="/testlabtest/List" value="Show All Testlabtest Items"/>
+        <br />
+        <h:link outcome="/testpricing/List" value="Show All Testpricing Items"/>
+        <br />
+        <h:link outcome="/unit/List" value="Show All Unit Items"/>
+        <br />
+        <h:link outcome="/vaccines/List" value="Show All Vaccines Items"/>
+     </div>
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+

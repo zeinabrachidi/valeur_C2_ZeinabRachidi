@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSubmedicineTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSubmedicineLabel_idSubmedicine}"/>
+                    <h:outputText value="#{submedicineController.selected.idSubmedicine}" title="#{bundle.ViewSubmedicineTitle_idSubmedicine}"/>
+                    <h:outputText value="#{bundle.ViewSubmedicineLabel_submedicineDose}"/>
+                    <h:outputText value="#{submedicineController.selected.submedicineDose}" title="#{bundle.ViewSubmedicineTitle_submedicineDose}"/>
+                    <h:outputText value="#{bundle.ViewSubmedicineLabel_idMedicineType}"/>
+                    <h:outputText value="#{submedicineController.selected.idMedicineType}" title="#{bundle.ViewSubmedicineTitle_idMedicineType}"/>
+                    <h:outputText value="#{bundle.ViewSubmedicineLabel_idMedicine}"/>
+                    <h:outputText value="#{submedicineController.selected.idMedicine}" title="#{bundle.ViewSubmedicineTitle_idMedicine}"/>
+                    <h:outputText value="#{bundle.ViewSubmedicineLabel_idUnit}"/>
+                    <h:outputText value="#{submedicineController.selected.idUnit}" title="#{bundle.ViewSubmedicineTitle_idUnit}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{submedicineController.destroyAndView}" value="#{bundle.ViewSubmedicineDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewSubmedicineEditLink}"/>
+                <br />
+                <h:commandLink action="#{submedicineController.prepareCreate}" value="#{bundle.ViewSubmedicineCreateLink}" />
+                <br />
+                <h:commandLink action="#{submedicineController.prepareList}" value="#{bundle.ViewSubmedicineShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewSubmedicineIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

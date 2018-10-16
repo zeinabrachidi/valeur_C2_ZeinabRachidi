@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePersonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_idPerson}" for="idPerson" />
+                    <h:inputText id="idPerson" value="#{personController.selected.idPerson}" title="#{bundle.CreatePersonTitle_idPerson}" required="true" requiredMessage="#{bundle.CreatePersonRequiredMessage_idPerson}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{personController.selected.firstName}" title="#{bundle.CreatePersonTitle_firstName}" />
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{personController.selected.lastName}" title="#{bundle.CreatePersonTitle_lastName}" />
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_gender}" for="gender" />
+                    <h:inputText id="gender" value="#{personController.selected.gender}" title="#{bundle.CreatePersonTitle_gender}" />
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_mobile}" for="mobile" />
+                    <h:inputText id="mobile" value="#{personController.selected.mobile}" title="#{bundle.CreatePersonTitle_mobile}" />
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{personController.selected.email}" title="#{bundle.CreatePersonTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_userName}" for="userName" />
+                    <h:inputText id="userName" value="#{personController.selected.userName}" title="#{bundle.CreatePersonTitle_userName}" />
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{personController.selected.password}" title="#{bundle.CreatePersonTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_idProfession}" for="idProfession" />
+                    <h:selectOneMenu id="idProfession" value="#{personController.selected.idProfession}" title="#{bundle.CreatePersonTitle_idProfession}" >
+                        <f:selectItems value="#{professionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_streetId}" for="streetId" />
+                    <h:selectOneMenu id="streetId" value="#{personController.selected.streetId}" title="#{bundle.CreatePersonTitle_streetId}" >
+                        <f:selectItems value="#{streetController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_auxiliary}" for="auxiliary" />
+                    <h:selectOneMenu id="auxiliary" value="#{personController.selected.auxiliary}" title="#{bundle.CreatePersonTitle_auxiliary}" >
+                        <f:selectItems value="#{auxiliaryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_patient}" for="patient" />
+                    <h:selectOneMenu id="patient" value="#{personController.selected.patient}" title="#{bundle.CreatePersonTitle_patient}" >
+                        <f:selectItems value="#{patientController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_technician}" for="technician" />
+                    <h:selectOneMenu id="technician" value="#{personController.selected.technician}" title="#{bundle.CreatePersonTitle_technician}" >
+                        <f:selectItems value="#{technicianController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_doctor}" for="doctor" />
+                    <h:selectOneMenu id="doctor" value="#{personController.selected.doctor}" title="#{bundle.CreatePersonTitle_doctor}" >
+                        <f:selectItems value="#{doctorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personController.create}" value="#{bundle.CreatePersonSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{personController.prepareList}" value="#{bundle.CreatePersonShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePersonIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

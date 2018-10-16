@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateVaccinesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateVaccinesLabel_idvaccines}" for="idvaccines" />
+                    <h:inputText id="idvaccines" value="#{vaccinesController.selected.idvaccines}" title="#{bundle.CreateVaccinesTitle_idvaccines}" required="true" requiredMessage="#{bundle.CreateVaccinesRequiredMessage_idvaccines}"/>
+                    <h:outputLabel value="#{bundle.CreateVaccinesLabel_vaccinesName}" for="vaccinesName" />
+                    <h:inputText id="vaccinesName" value="#{vaccinesController.selected.vaccinesName}" title="#{bundle.CreateVaccinesTitle_vaccinesName}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{vaccinesController.create}" value="#{bundle.CreateVaccinesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{vaccinesController.prepareList}" value="#{bundle.CreateVaccinesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateVaccinesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

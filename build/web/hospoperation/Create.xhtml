@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHospoperationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHospoperationLabel_hospitalization}" for="hospitalization" />
+                    <h:selectOneMenu id="hospitalization" value="#{hospoperationController.selected.hospitalization}" title="#{bundle.CreateHospoperationTitle_hospitalization}" required="true" requiredMessage="#{bundle.CreateHospoperationRequiredMessage_hospitalization}">
+                        <f:selectItems value="#{hospitalizationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateHospoperationLabel_operation}" for="operation" />
+                    <h:selectOneMenu id="operation" value="#{hospoperationController.selected.operation}" title="#{bundle.CreateHospoperationTitle_operation}" required="true" requiredMessage="#{bundle.CreateHospoperationRequiredMessage_operation}">
+                        <f:selectItems value="#{operationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateHospoperationLabel_idPersonDoc}" for="idPersonDoc" />
+                    <h:selectOneMenu id="idPersonDoc" value="#{hospoperationController.selected.idPersonDoc}" title="#{bundle.CreateHospoperationTitle_idPersonDoc}" >
+                        <f:selectItems value="#{doctorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{hospoperationController.create}" value="#{bundle.CreateHospoperationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{hospoperationController.prepareList}" value="#{bundle.CreateHospoperationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateHospoperationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

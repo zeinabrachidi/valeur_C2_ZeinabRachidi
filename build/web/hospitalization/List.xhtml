@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListHospitalizationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListHospitalizationEmpty}" rendered="#{hospitalizationController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{hospitalizationController.items.rowCount > 0}">
+                    <h:outputText value="#{hospitalizationController.pagination.pageFirstItem + 1}..#{hospitalizationController.pagination.pageLastItem + 1}/#{hospitalizationController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{hospitalizationController.previous}" value="#{bundle.Previous} #{hospitalizationController.pagination.pageSize}" rendered="#{hospitalizationController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{hospitalizationController.next}" value="#{bundle.Next} #{hospitalizationController.pagination.pageSize}" rendered="#{hospitalizationController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{hospitalizationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospitalizationTitle_idMedicalAct}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMedicalAct}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospitalizationTitle_idHhospital}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idHhospital}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListHospitalizationTitle_medicalact}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.medicalact}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{hospitalizationController.prepareView}" value="#{bundle.ListHospitalizationViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hospitalizationController.prepareEdit}" value="#{bundle.ListHospitalizationEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{hospitalizationController.destroy}" value="#{bundle.ListHospitalizationDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{hospitalizationController.prepareCreate}" value="#{bundle.ListHospitalizationCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListHospitalizationIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

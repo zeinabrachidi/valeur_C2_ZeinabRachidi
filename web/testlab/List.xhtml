@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTestlabTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTestlabEmpty}" rendered="#{testlabController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{testlabController.items.rowCount > 0}">
+                    <h:outputText value="#{testlabController.pagination.pageFirstItem + 1}..#{testlabController.pagination.pageLastItem + 1}/#{testlabController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{testlabController.previous}" value="#{bundle.Previous} #{testlabController.pagination.pageSize}" rendered="#{testlabController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{testlabController.next}" value="#{bundle.Next} #{testlabController.pagination.pageSize}" rendered="#{testlabController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{testlabController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestlabTitle_idTestLab}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTestLab}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestlabTitle_dateTest}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateTest}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestlabTitle_iidPersonTech}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.iidPersonTech}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestlabTitle_idLaboratory}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLaboratory}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestlabTitle_hosptestlab}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.hosptestlab}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTestlabTitle_constestlab}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.constestlab}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{testlabController.prepareView}" value="#{bundle.ListTestlabViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{testlabController.prepareEdit}" value="#{bundle.ListTestlabEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{testlabController.destroy}" value="#{bundle.ListTestlabDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{testlabController.prepareCreate}" value="#{bundle.ListTestlabCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTestlabIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
